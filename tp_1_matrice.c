@@ -103,20 +103,21 @@ void matriceCaracteresEnFichier() {
     FILE* fichier = NULL;
 
     int nRow, nCol;
-    fichier = fopen("matrice.txt", "r");
+    fichier = fopen("matrice.txt", "r+");
 
     while(!feof(fichier)){
-        fscanf(fichier, "%d\n", nRow);
-        fscanf(fichier, "%d\n", nCol);
+        fscanf(fichier, "%d\n", &nRow);
+        fscanf(fichier, "%d\n", &nCol);
+        printf("Nombre de ligne %d, nombre de columns %d\n", nRow, nCol);
 
         matrice = (char **)malloc(nRow * sizeof(char *));
         for(int i = 0; i < nRow; i++){
             matrice[i] = (char *)malloc(nCol * sizeof(char));
             for(int j = 0; j < nCol; j++){
-                fscanf(fichier, "%d ", &matrice[i][j]);
-                prinf("%d\t", matrice[i][j]);
+                fscanf(fichier, "%s\n", &matrice[i][j]);
+                printf("%c\t", matrice[i][j]);
             }
-            prinf("\n");
+            printf("\n");
         }
     }
     fclose(fichier);
@@ -124,7 +125,7 @@ void matriceCaracteresEnFichier() {
     printf("Afficher : \n");
     for(int i = 0; i < nRow; i++){
         for(int j = 0; j < nCol; j++){
-            printf("Table[%d][%d] = %s\n", i, j, &matrice[i][j]);
+            printf("Table[%d][%d] = %c\n", i, j, matrice[i][j]);
         }
     }
 
@@ -146,6 +147,6 @@ int main() {
 
     // 4 - Saisir et afficher une matrice de caracteres a partir d'un fichier
     matriceCaracteresEnFichier();
-
+    
     return 0;
 }
