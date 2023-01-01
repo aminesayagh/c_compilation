@@ -54,32 +54,36 @@ int trace(int **matriceTransition, int *mot, int taille) {
 
 
 int main() {
-
-    // definir la matrice
-    int **matrice = NULL;
-
+    // Demande à l'utilisateur de saisir les dimensions de la matrice de transition
     int row = 0, col = 0;
-    printf("Nombre ligne : ");
+    printf("Nombre lignes : ");
     scanf("%d", &row);
-    printf("Nombre columns : ");
+    printf("Nombre colonnes : ");
     scanf("%d", &col);
 
-    matrice = saisirMatrice(row,col);
-    afficherMatrice(matrice,row , col);
+    // Demande à l'utilisateur de saisir la matrice de transition
+    int **matrice = saisirMatrice(row, col);
+    afficherMatrice(matrice, row, col);
 
-    // definir le mot
+    // Demande à l'utilisateur de saisir le mot à tester
     int *mot = NULL;
     int tailleMot = 0;
-    printf("definiser la taille du mot = ");
+    printf("Taille du mot : ");
     scanf("%d", &tailleMot);
     mot = saisirTableau(tailleMot);
 
+    // Calcule la trace du mot dans la matrice de transition
     int traceDuMot = trace(matrice, mot, tailleMot);
-    if(traceDuMot == -1){
-        printf("Le mot n'est pas reconnue par le langage");
-    }else{
-        printf("Le mot est reconnue par le langage");
+
+    // Affiche si le mot est reconnu ou non par le langage
+    if (traceDuMot == -1) {
+        printf("Le mot n'est pas reconnu par le langage");
+    } else {
+        printf("Le mot est reconnu par le langage");
     }
+
+    return 0;
+}
     
     return 0;
 }
