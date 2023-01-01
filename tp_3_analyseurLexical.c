@@ -32,10 +32,11 @@ int *saisirTableau(int row) {
 }
 
 int trace(int **matriceTransition, int *mot, int taille){
-    int node = 0;
-    for(int i = 0; i < taille; i++) {
-        node = matriceTransition[node][mot[i]];
+    int trace = 0;
+    for(int i = 0; i < taille && trace != -1; i++) {
+        trace = matriceTransition[trace][mot[i]];
     }
+    return trace;
     
 }
 
@@ -60,5 +61,12 @@ int main() {
     scanf("%d", &mot);
     mot = saisirTableau(tailleMot);
 
-    trace(matrice, mot, tailleMot);
+    int traceDuMot = trace(matrice, mot, tailleMot);
+    if(traceDuMot == -1){
+        printf("Le mot est reconnue par le langage");
+    }else{
+        printf("Le mot n'est pas reconnue par le langage");
+    }
+    
+    return 0;
 }
