@@ -54,23 +54,17 @@ int trace(char **matriceTransition, int *mot, int taille) {
 }
 
 int* convertirMotCharVersInt(char *mot, int taille) {
+    // Allouer de la mémoire pour un tableau d'entiers de la même taille que le tableau de caractères
     int *motConverti = (int *)malloc(sizeof(int)* taille);
+
+    // Parcourir chaque élément du tableau de caractères et le convertir en entier
     for(int i= 0; i < taille; i++){
-        switch(mot[i]) {
-            case 'a':
-                motConverti[i] = 0;
-                break;
-            case 'b':
-                motConverti[i] = 1;
-                break;
-            case 'c':
-                motConverti[i] = 2;
-                break;
-            default:
-                motConverti[i] = -1;
-                break;
-        }
+        // Convertir la valeur du caractère en entier en soustrayant 97
+        // La valeur de chaque caractère est alors convertie en entier en soustrayant 97. Par exemple, si le caractère à l'indice i est 'a', sa valeur ASCII est 97
+        motConverti[i] = (int *)(mot[i]) - 97;
     }
+
+    // Retourner le pointeur vers le tableau d'entiers converti
     return motConverti;
 }
 
@@ -92,7 +86,7 @@ int main() {
     printf("Taille du mot : ");
     scanf("%d", &tailleMot);
     mot = saisirTableau(tailleMot);
-    int motReels = convertirMotCharVersInt(mot);
+    int motReels = convertirMotCharVersInt(mot, tailleMot);
 
     // Calcule la trace du mot dans la matrice de transition
     int traceDuMot = trace(matrice, motReels, tailleMot);
