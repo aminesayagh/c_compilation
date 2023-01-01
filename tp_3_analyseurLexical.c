@@ -32,6 +32,10 @@ int *saisirTableau(int row) {
 }
 
 int trace(int **matriceTransition, int *mot, int taille){
+    int node = 0;
+    for(int i = 0; i < taille; i++) {
+        node = matriceTransition[node][mot[i]];
+    }
     
 }
 
