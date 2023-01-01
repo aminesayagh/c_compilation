@@ -41,6 +41,7 @@ char **matriceCaracteresEnFichier() {
 int main() {
     char **matrice = matriceCaracteresEnFichier();
 
+    
 
     return 0;
 }

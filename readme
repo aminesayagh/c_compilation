@@ -1,0 +1,9 @@
+Soit le langage L des entiers naturels qui accept la division sur 2 sur V={0,1,2,3,4,5}
+
+1- Donner e(L).
+2- En deduire l'AFDM.
+3- En deduire la matrice de transition.
+4- Proposer une implementation de l'analyseur lexical.
+
+
+1- e(L) = [0-5]*{0-2-4}
