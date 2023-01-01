@@ -101,16 +101,31 @@ void matriceCaracteres() {
     // Libère la mémoire allouée pour la matrice
     free(matrice);
 }
-
 int main() {
-    // 1 - Saisir et afficher un tableau des entriers (dynamiquement)
-    tableauEntier();
+    // Demander à l'utilisateur de sélectionner une option
+    printf("Choisissez une option :\n");
+    printf("1. Tableau d'entiers\n");
+    printf("2. Matrice d'entiers\n");
+    printf("3. Matrice de caractères\n");
+    printf("Option sélectionnée : ");
 
-    // 2 - Saisir et afficher une matrice entiers
-    matriceEntier();
+    int option;
+    scanf("%d", &option);
 
-    // 3 - Saisir et afficher une matrice de caracteres
-    matriceCaracteres();
-    
+    switch (option) {
+        case 1:
+            tableauEntier();
+            break;
+        case 2:
+            matriceEntier();
+            break;
+        case 3:
+            matriceCaracteres();
+            break;
+        default:
+            printf("Option non valide\n");
+            break;
+    }
+
     return 0;
 }
