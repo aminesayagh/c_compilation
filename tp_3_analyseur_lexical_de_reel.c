@@ -74,12 +74,20 @@ int main() {
 
     // Calcule la trace du mot dans la matrice de transition
     int traceDuMot = trace(matrice, mot, tailleMot);
+    
+    int etatFinal;
+    printf("Definiser l'etat final de l'automate");
+    scanf("%d", &etatFinal);
 
     // Affiche si le mot est reconnu ou non par le langage
     if (traceDuMot == -1) {
         printf("Le mot n'est pas reconnu par le langage");
     } else {
         printf("Le mot est reconnu par le langage");
+        // La reconnessance du trace comme etat finale
+        if(etatFinal == traceDuMot) {
+            printf("Le trace et un etat final");
+        }
     }
 
     return 0;
