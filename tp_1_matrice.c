@@ -2,136 +2,103 @@
 #include <stdio.h>
 #include <string.h>
 
-void tableauEntier(){
+// Cette fonction demande à l'utilisateur de saisir un tableau d'entiers
+// et affiche le tableau
+void tableauEntier() {
     int taille = 0;
-
     printf("Taille du tableau : ");
     scanf("%d", &taille);
 
-    // declaration
+    // Alloue de la mémoire pour le tableau
     int *table = (int*)malloc(taille * sizeof(int));
 
-    // saisir
-    for(int i = 0; i < taille; i++) {
+    // Demande à l'utilisateur de saisir chaque élément du tableau
+    printf("Saisie des éléments du tableau :\n");
+    for (int i = 0; i < taille; i++) {
         printf("Table[%d] = ", i);
         scanf("%d", &table[i]);
     }
 
-    // afficher
-    for(int i = 0; i < taille; i++) {
+    // Affiche le tableau
+    printf("Affichage du tableau :\n");
+    for (int i = 0; i < taille; i++) {
         printf("Table[%d] = %d\n", i, table[i]);
     }
 
+    // Libère la mémoire allouée pour le tableau
     free(table);
 }
 
 void matriceEntier() {
     int tailleCol, tailleRow;
-
-    printf("Nombre de Lignes : ");
+    printf("Nombre de lignes de la matrice : ");
     scanf("%d", &tailleRow);
-
-    printf("Nombre de colonnes : ");
+    printf("Nombre de colonnes de la matrice : ");
     scanf("%d", &tailleCol);
 
+    // Alloue de la mémoire pour chaque ligne de la matrice
     int **matrice = (int **)malloc(sizeof(int*) * tailleRow);
 
-    printf("Saisir : \n");
-
-    for(int i = 0; i < tailleRow; i++){
+    // Demande à l'utilisateur de saisir chaque élément de la matrice
+    printf("Saisie des éléments de la matrice :\n");
+    for (int i = 0; i < tailleRow; i++) {
         matrice[i] = (int *)malloc(tailleCol * sizeof(int));
-
-        for(int j = 0; j < tailleCol; j++){
+        for (int j = 0; j < tailleCol; j++) {
             printf("Matrice[%d][%d] = ", i, j);
             scanf("%d", &matrice[i][j]);
-
         }
     }
 
-    printf("Afficher : \n");
-
-    for(int i = 0; i < tailleRow; i++){
-        for(int j = 0; j < tailleCol; j++){
+    // Affiche la matrice
+    printf("Affichage de la matrice :\n");
+    for (int i = 0; i < tailleRow; i++) {
+        for (int j = 0; j < tailleCol; j++) {
             printf("Table[%d][%d] = %d\n", i, j, matrice[i][j]);
         }
     }
 
-    for(int i = 0; i < tailleRow; i++){
+    // Libère la mémoire allouée pour chaque ligne de la matrice
+    for (int i = 0; i < tailleRow; i++) {
         free(matrice[i]);
     }
+    // Libère la mémoire allouée pour la matrice
     free(matrice);
 }
 
 void matriceCaracteres() {
-    int tailleCol, tailleRow;
+    int nbLignes, nbColonnes;
 
-    printf("Nombre de Lignes : ");
-    scanf("d", &tailleRow);
+    printf("Nombre de lignes de la matrice : ");
+    scanf("%d", &nbLignes);
+    printf("Nombre de colonnes de la matrice : ");
+    scanf("%d", &nbColonnes);
 
-    printf("Nombre de colonnes : ");
-    scanf("d", &tailleCol);
+    // Alloue de la mémoire pour chaque ligne de la matrice
+    char **matrice = (char **)malloc(sizeof(char*) * nbLignes);
 
-    char **matrice = (char **)malloc(sizeof(char*) * tailleRow);
-
-    printf("Saisir : \n");
-    for(int i = 0; i < tailleRow; i++){
-        matrice[i] = (char *)malloc(tailleCol * sizeof(char));
-
-        for(int j = 0; j < tailleCol; j++){
+    printf("Saisie des éléments de la matrice :\n");
+    // Demande à l'utilisateur de saisir chaque élément de la matrice
+    for (int i = 0; i < nbLignes; i++) {
+        matrice[i] = (char *)malloc(nbColonnes * sizeof(char));
+        for (int j = 0; j < nbColonnes; j++) {
             printf("Table[%d][%d] = ", i, j);
             scanf("%s", &matrice[i][j]);
         }
     }
 
-    printf("Afficher : \n");
-    for(int i = 0; i < tailleRow; i++){
-        for(int j = 0; j < tailleCol; j++){
+    printf("Affichage de la matrice :\n");
+    // Affiche chaque élément de la matrice
+    for (int i = 0; i < nbLignes; i++) {
+        for (int j = 0; j < nbColonnes; j++) {
             printf("Table[%d][%d] = %s\n", i, j, &matrice[i][j]);
         }
     }
 
-    for(int i = 0; i < tailleRow; i++){
+    // Libère la mémoire allouée pour chaque ligne de la matrice
+    for (int i = 0; i < nbLignes; i++) {
         free(matrice[i]);
     }
-    free(matrice);
-}
-
-void matriceCaracteresEnFichier() {
-    char **matrice = NULL;
-    printf("Saisir une caracteres a partir d'un fichier : \n");
-
-    FILE* fichier = NULL;
-
-    int nRow, nCol;
-    fichier = fopen("matrice.txt", "r+");
-
-    while(!feof(fichier)){
-        fscanf(fichier, "%d\n", &nRow);
-        fscanf(fichier, "%d\n", &nCol);
-        printf("Nombre de ligne %d, nombre de columns %d\n", nRow, nCol);
-
-        matrice = (char **)malloc(nRow * sizeof(char *));
-        for(int i = 0; i < nRow; i++){
-            matrice[i] = (char *)malloc(nCol * sizeof(char));
-            for(int j = 0; j < nCol; j++){
-                fscanf(fichier, "%s\n", &matrice[i][j]);
-                printf("%c\t", matrice[i][j]);
-            }
-            printf("\n");
-        }
-    }
-    fclose(fichier);
-
-    printf("Afficher : \n");
-    for(int i = 0; i < nRow; i++){
-        for(int j = 0; j < nCol; j++){
-            printf("Table[%d][%d] = %c\n", i, j, matrice[i][j]);
-        }
-    }
-
-    for(int i = 0; i < nRow; i++){
-        free(matrice[i]);
-    }
+    // Libère la mémoire allouée pour la matrice
     free(matrice);
 }
 
@@ -144,9 +111,6 @@ int main() {
 
     // 3 - Saisir et afficher une matrice de caracteres
     matriceCaracteres();
-
-    // 4 - Saisir et afficher une matrice de caracteres a partir d'un fichier
-    matriceCaracteresEnFichier();
     
     return 0;
 }
