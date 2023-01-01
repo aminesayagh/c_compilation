@@ -1,3 +1,4 @@
+Exercice 1:
 Soit le langage L des entiers naturels qui accept la division sur 2 sur V={0,1,2,3,4,5}
 
 1- Donner e(L).
@@ -7,3 +8,15 @@ Soit le langage L des entiers naturels qui accept la division sur 2 sur V={0,1,2
 
 
 1- e(L) = [0-5]*{0-2-4}
+implementation => tp3_analyseur_lexical_de_reel
+
+Exercice 2:
+Soit V={a,b,c} et soit L, le langage des mots sur L, tel que un mot qui appartient a L doit
+    commencer par ab ou bien ac
+    comporte la chaine bc
+    se termine par la sous chaine c
+1. Donner l'analyseur lexicale pour L
+2. Implementer un analyseur lexicale qui permet d'analyer plusieurs mots a la fois
+3. Il doit lire les mots a partir d'un fichier
+4. la matrice de transition doit etre saisie a partir d'un fichier
+

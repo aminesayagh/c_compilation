@@ -43,14 +43,35 @@ char *saisirTableau(int row) {
 
 // Cette fonction calcule la trace du mot passé en paramètre dans la matrice de transition
 // Elle renvoie -1 si le mot n'est pas reconnu par le langage, sinon elle renvoie l'état final
-int trace(char **matriceTransition, char *mot, int taille) {
+int trace(char **matriceTransition, int *mot, int taille) {
     int trace = 0;
     for (int i = 0; i < taille && trace != -1; i++) {
         trace = matriceTransition[trace][mot[i]];
-        printf("T[%d][%c] = %d\n", trace, mot[i], trace);
+        printf("T[%d][%d] = %d\n", trace, mot[i], trace);
         if(trace == -1) return -1;
     }
     return trace;
+}
+
+int* convertirMotCharVersInt(char *mot, int taille) {
+    int *motConverti = (int *)malloc(sizeof(int)* taille);
+    for(int i= 0; i < taille; i++){
+        switch(mot[i]) {
+            case 'a':
+                motConverti[i] = 0;
+                break;
+            case 'b':
+                motConverti[i] = 1;
+                break;
+            case 'c':
+                motConverti[i] = 2;
+                break;
+            default:
+                motConverti[i] = -1;
+                break;
+        }
+    }
+    return motConverti;
 }
 
 int main() {
@@ -71,9 +92,10 @@ int main() {
     printf("Taille du mot : ");
     scanf("%d", &tailleMot);
     mot = saisirTableau(tailleMot);
+    int motReels = convertirMotCharVersInt(mot);
 
     // Calcule la trace du mot dans la matrice de transition
-    int traceDuMot = trace(matrice, mot, tailleMot);
+    int traceDuMot = trace(matrice, motReels, tailleMot);
 
     // Affiche si le mot est reconnu ou non par le langage
     if (traceDuMot == -1) {
@@ -81,6 +103,6 @@ int main() {
     } else {
         printf("Le mot est reconnu par le langage");
     }
-    
+
     return 0;
 }
