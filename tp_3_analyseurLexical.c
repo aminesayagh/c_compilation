@@ -23,9 +23,9 @@ void afficherMatrice(int **matrice, int row, int col){
 }
 
 int *saisirTableau(int row) {
-    int *tab = (int)malloc(row*sizeof(int));
+    int *tab = (int*)malloc(row*sizeof(int));
     for(int i = 0;i < row; i++){
-        printf("Tab[%d] = ", tab[i]);
+        printf("Tab[%d] = ", i);
         scanf("%d", &tab[i]);
     }
     return tab;
@@ -35,6 +35,7 @@ int trace(int **matriceTransition, int *mot, int taille){
     int trace = 0;
     for(int i = 0; i < taille && trace != -1; i++) {
         trace = matriceTransition[trace][mot[i]];
+        printf("T[%d][%d] = %d\n" , trace, mot[i],trace);
     }
     return trace;
     
@@ -47,9 +48,9 @@ int main() {
 
     int row = 0, col = 0;
     printf("Nombre ligne : ");
-    scanf("%d", row);
+    scanf("%d", &row);
     printf("Nombre columns : ");
-    scanf("%d", col);
+    scanf("%d", &col);
 
     matrice = saisirMatrice(row,col);
     afficherMatrice(matrice,row , col);
@@ -58,14 +59,14 @@ int main() {
     int *mot = NULL;
     int tailleMot = 0;
     printf("definiser la taille du mot = ");
-    scanf("%d", &mot);
+    scanf("%d", &tailleMot);
     mot = saisirTableau(tailleMot);
 
     int traceDuMot = trace(matrice, mot, tailleMot);
     if(traceDuMot == -1){
-        printf("Le mot est reconnue par le langage");
-    }else{
         printf("Le mot n'est pas reconnue par le langage");
+    }else{
+        printf("Le mot est reconnue par le langage");
     }
     
     return 0;
