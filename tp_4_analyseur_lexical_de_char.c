@@ -61,6 +61,8 @@ int* convertirMotCharVersInt(char *mot, int taille) {
     for(int i= 0; i < taille; i++){
         // Convertir la valeur du caractère en entier en soustrayant 97
         // La valeur de chaque caractère est alors convertie en entier en soustrayant 97. Par exemple, si le caractère à l'indice i est 'a', sa valeur ASCII est 97
+        // a - 97 => 97 - 97 = 0
+        // b = 1 ...
         motConverti[i] = (int *)(mot[i]) - 97;
     }
 
