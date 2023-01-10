@@ -4,18 +4,18 @@
 
 // Cette fonction demande à l'utilisateur de saisir une matrice de char de taille row x col
 // et renvoie cette matrice sous forme de tableau à deux dimensions
-char **saisirMatrice(int row, int col) {
-    char **matrice;
-    matrice = (char**)malloc(row*sizeof(char*));
+int **saisirMatrice(int row, int col) {
+    int **matrice;
+    matrice = (int**)malloc(row*sizeof(int*));
 
     // Alloue de la mémoire pour chaque ligne de la matrice
     for (int i = 0; i < row; i++) {
-        matrice[i] = (char*)malloc(col*sizeof(char));
+        matrice[i] = (int*)malloc(col*sizeof(int));
 
         // Demande à l'utilisateur de saisir chaque élément de la matrice
         for (int j = 0; j < col; j++) {
             printf("matrice[%d][%d] = ", i, j);
-            scanf(" %c", &matrice[i][j]);
+            scanf(" %d", &matrice[i][j]);
         }
     }
     return matrice;
